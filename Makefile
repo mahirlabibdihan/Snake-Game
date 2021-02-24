@@ -59,7 +59,3 @@ run: game
 
 clean:
 	rm -rf *o
-
-
-
-# g++32 -Iinclude   -c ${file} -o a.o && g++32 -Llib a.o
