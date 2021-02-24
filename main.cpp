@@ -14,20 +14,40 @@ GameWindow frame;
 Option Menu = MAIN;
 GameDetails game;
 
+extern Direction dirKey;
+bool isHighScore();
+bool Play=false;
 void Logic()
 {
 	switch (Menu)
 	{
 	case NEW:
+		if(!Play)
+		{
+			
+			Play=true;
+		}
+		
 		if (game.isOver()) return;
 		if (snake.isStopped()) return;	
+		if (dirKey==NONE) return;
 		for (int i = 1; i < snake.Length(); i++)
 		{
 			if (snake.tail[i].getX() == snake.head.getX() && snake.tail[i].getY() == snake.head.getY())
 			{
-				Menu=GAMEOVER;
+				Sleep(1000);
+				if(isHighScore())
+				{
+					Menu = GAMEOVER;
+				}
+				else
+				{
+					Menu = MAIN;
+				}
 			}
 		}		
+
+
 		snake.insert();
 		if (fruit.isEaten())
 		{
@@ -36,20 +56,24 @@ void Logic()
 			fruit.newLocation();
 		}
 
-		if (snake.getDir() == UP)
+		if (dirKey == UP)
 		{
+			snake.setDir(dirKey);
 			snake.moveUp();
 		}
-		else if (snake.getDir() == DOWN)
+		else if (dirKey == DOWN)
 		{
+			snake.setDir(dirKey);
 			snake.moveDown();
 		}
-		else if (snake.getDir() == LEFT)
+		else if (dirKey == LEFT)
 		{
+			snake.setDir(dirKey);
 			snake.moveLeft();
 		}
-		else if (snake.getDir() == RIGHT)
+		else if (dirKey == RIGHT)
 		{
+			snake.setDir(dirKey);
 			snake.moveRight();
 		}
 		snake.boundaryCheck();
@@ -57,10 +81,18 @@ void Logic()
 }
 void setup()
 {
+	Grid::setUnit(20);
+	iG::iSetScreenHeight(500);
+	iG::iSetScreenWidth(ceil((GetSystemMetrics(SM_CXFULLSCREEN)*500.0)/(GetSystemMetrics(SM_CYFULLSCREEN)*Grid::getUnit()))*Grid::getUnit());
+	Grid::setRow();
+	Grid::setCol();
+	game.setScreenHeight();
+	game.setScreenWidth();
 	string MenuBtn[] = {"New game", "Resume", "Level", "Highscore", "Quit"};
 	string LevelBtn[] = {"Easy", "Hard"};
 	snake.head.setRGB(GREEN);
 	frame.border.setRGB(GREEN);
+	
 	frame.border.setBounds(Grid::getUnit()/2,Grid::getUnit()/2,(Grid::getCol() - 1)*Grid::getUnit(),(Grid::getRow() - 1)*Grid::getUnit());
 	fruit.newLocation();
 	menu[0].select();
@@ -97,13 +129,17 @@ void setup()
 
 int main(int argc, char *argv[])
 {
+
 	srand(time(NULL));
 	glutInit(&argc, argv);
 	setup();
-	iG::ITimer::iset(70, Logic);
-	iG::iInitialize(iG::iGetScreenWidth(), iG::iGetScreenHeight(), (char*)"snake", 960-iG::iGetScreenWidth()/2,510-iG::iGetScreenHeight()/2);
-	glutFullScreen();
+	iG::ITimer::iSet(50, Logic);
+	iG::iInitialize((char*)"snake",GetSystemMetrics(SM_CXFULLSCREEN)/2-iG::iGetScreenWidth()/2,GetSystemMetrics(SM_CYFULLSCREEN)/2-iG::iGetScreenHeight()/2);
+	// glutFullScreen();
+	glutSetCursor(GLUT_CURSOR_NONE);
 	glutMainLoop();
+
+
 }
 
 	

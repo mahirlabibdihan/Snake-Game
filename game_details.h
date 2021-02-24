@@ -19,5 +19,7 @@ public:
 	void reset();
 	int getScreenHeight();
 	int getScreenWidth();
+	void setScreenHeight();
+	void setScreenWidth();
 };
 #endif

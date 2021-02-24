@@ -6,8 +6,8 @@ GameDetails::GameDetails()
 		GAMEOVER = false;
 		score = 0;
 		increment = 10;
-		screenHeight = iG::iGetScreenHeight();
-		screenWidth = iG::iGetScreenWidth();
+		
+		
 	}
 	int GameDetails::getScreenHeight()
 	{
@@ -16,6 +16,14 @@ GameDetails::GameDetails()
 	int GameDetails::getScreenWidth()
 	{
 		return screenWidth;
+	}
+	void GameDetails::setScreenHeight()
+	{
+		screenHeight = iG::iGetScreenHeight();
+	}
+	void GameDetails::setScreenWidth()
+	{
+		screenWidth = iG::iGetScreenWidth();
 	}
 	int GameDetails::getScore()
 	{

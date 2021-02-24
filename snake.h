@@ -32,5 +32,6 @@ public:
 	void reset();
 	void save(ofstream& out);
 	void load(ifstream& in);
+	void controlMove(unsigned char key);
 };
 #endif

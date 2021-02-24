@@ -46,6 +46,14 @@ public:
     {
         return iScreenWidth;
     }
+    static int iSetScreenHeight(int height)
+    {
+        iScreenHeight=height;
+    }
+    static int iSetScreenWidth(int width)
+    {
+        iScreenWidth=width;
+    }
     static double igetMouseX()
     {
         return iMouseX;
@@ -112,6 +120,10 @@ public:
         glutPostRedisplay();
     }
 
+    static void joystickHandlerFF(unsigned int, int, int, int )
+    {
+        
+    }
     static void keyboardHandler1FF(unsigned char key, int x, int y)
     {
         iKeyboard(key);
@@ -190,7 +202,7 @@ public:
         static void  __stdcall iA8(HWND, unsigned int, unsigned int, unsigned long) {if (!iAnimPause[8])iAnimFunction[8]();}
         static void  __stdcall iA9(HWND, unsigned int, unsigned int, unsigned long) {if (!iAnimPause[9])iAnimFunction[9]();}
     public:
-        static int iset(int msec, void (*f)(void))
+        static int iSet(int msec, void (*f)(void))
         {
             int i = iAnimCount;
 
@@ -622,37 +634,7 @@ public:
         glPopMatrix();
     }
 
-    static void iInitialize(int width, int height, char* title = (char*) "iG", int x = 0, int y = 10)
-    {
-        iScreenHeight = height;
-        iScreenWidth = width;
-        glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_ALPHA) ;
-        glutInitWindowSize(width , height ) ;
-        glutInitWindowPosition(x, y) ;
-        glutCreateWindow(title) ;
-        glClearColor( 0.0 , 0.0 , 0.0 , 0.0 ) ;
-        glMatrixMode( GL_PROJECTION) ;
-        glLoadIdentity() ;
-        glOrtho(0.0 , width , 0.0 , height , -1.0 , 1.0) ;
-        iClear();
-
-        
-        glutDisplayFunc(displayFF);
-        glutReshapeFunc(reshapeFF);
-        glutKeyboardFunc(keyboardHandler1FF); //normal
-        glutSpecialFunc(keyboardHandler2FF); //special keys
-        glutMouseFunc(mouseClickHandlerFF);
-        glutMotionFunc(mouseDragHandlerFF);
-        glutPassiveMotionFunc(mouseMoveHandlerFF);
-        glutMouseWheelFunc(mouseWheelHandlerFF);
-        glutIdleFunc(animFF) ;
-        glAlphaFunc(GL_GREATER, 0.0f);
-        glEnable(GL_ALPHA_TEST);
-        glEnable(GL_LINE_SMOOTH);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glLineWidth(2.0);
-    }
+    static void iInitialize(char* title, int x, int y);
 };
 
 #endif

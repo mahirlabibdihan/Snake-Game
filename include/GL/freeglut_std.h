@@ -451,7 +451,7 @@ FGAPI void    FGAPIENTRY glutSwapBuffers( void );
  * Mouse cursor functions, see fg_cursor.c
  */
 FGAPI void    FGAPIENTRY glutWarpPointer( int x, int y );
-FGAPI void    FGAPIENTRY glutsetCursor( int cursor );
+FGAPI void    FGAPIENTRY glutSetCursor( int cursor );
 
 /*
  * Overlay stuff, see fg_overlay.c

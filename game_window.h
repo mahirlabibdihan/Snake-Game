@@ -2,7 +2,7 @@
 #define __WINDOW__
 #include "main.h"
 #include "color.h"
-#include "graph.h"
+#include "grid.h"
 #include "box.h"
 class GameWindow {
 public:

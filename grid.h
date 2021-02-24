@@ -7,8 +7,8 @@ class Grid{
 protected:
 	static int unit, row, col;
 public:
-	Grid();
 	static int getUnit();
+	static void setUnit(int);
 	static int getRow();
 	static int getCol();
 	static void setRow();

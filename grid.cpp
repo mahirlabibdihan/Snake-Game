@@ -1,13 +1,16 @@
 #include "Grid.h"
-Grid::Grid()
-{
 
-}
 int Grid::getUnit()
 {
 	return unit;
 }
 
+void Grid::setUnit(int u)
+{
+	unit = u;
+	row = iG::iGetScreenHeight() / unit;
+	col = iG::iGetScreenWidth() / unit;
+}
 int Grid::getRow()
 {
 	return row;
@@ -39,6 +42,6 @@ void Grid::draw()
 		iG::IDraw::iLine(0, y, getCol() * getUnit(), y);
 	}
 }
-int Grid::unit=20;
-int Grid::row=iG::iGetScreenHeight() / unit;
-int Grid::col=iG::iGetScreenWidth() / unit;
+int Grid::unit;
+int Grid::row;
+int Grid::col;

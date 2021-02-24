@@ -6,52 +6,7 @@ extern Snake snake;
 extern GameDetails game;
 extern Option Menu;
 extern Button menu[5], level[2];
-
-void SaveScore()
-{
-	struct ScoreType
-	{
-		string name;
-		int score;
-	};
-	vector<ScoreType> ScoreSheet;
-	int i, j, k;
-	ifstream in;
-	in.open("Data\\HIGHSCORE.txt", ios::in);
-	while (!in.eof())
-	{
-		string name;
-		int score;
-		in >> name >> score;
-		if (name != "")
-		{
-			ScoreSheet.push_back({name, score});
-		}
-	}
-	cout << ScoreSheet.size() << endl;
-	in.close();
-
-	for (j = 0; j < ScoreSheet.size(); j++)
-	{
-		if (game.getScore() > ScoreSheet[j].score)
-		{
-			ScoreSheet.insert(ScoreSheet.begin() + j, (ScoreType) {snake.name, game.getScore()});
-			break;
-		}
-	}
-	if (j == ScoreSheet.size() && j < 10)
-	{
-		ScoreSheet.push_back({snake.name, game.getScore()});
-	}
-	ofstream out;
-	out.open("Data\\HIGHSCORE.txt", ios::out);
-	for (i = 0; i < ScoreSheet.size() - 1&&i<9; i++)
-	{
-		out << ScoreSheet[i].name << " " << ScoreSheet[i].score << endl;
-	}
-	out << ScoreSheet[i].name << " " << ScoreSheet[i].score;
-	out.close();
-}
+void nameEntry(unsigned char key);
 
 void iG::iKeyboard(unsigned char key)
 {
@@ -110,7 +65,7 @@ void iG::iKeyboard(unsigned char key)
 			Menu = MAIN;
 			break;
 		case ' ':
-			if(snake.isStopped()) snake.move();
+			if (snake.isStopped()) snake.move();
 			else snake.stop();
 			break;
 		}
@@ -131,30 +86,7 @@ void iG::iKeyboard(unsigned char key)
 
 	case GAMEOVER:
 	{
-		switch (key)
-		{
-		case '\r':
-			SaveScore();
-			snake.name.clear();
-			Menu = MAIN;
-			break;
-		case '\b':
-			if (!snake.name.empty())
-			{
-				snake.name.pop_back();
-			}
-		case 27:
-			// Menu = MAIN;
-			break;
-		case ' ':
-			break;
-		default:
-			if (snake.name.length() < 10)
-			{
-				snake.name += key;
-			}
-			break;
-		}
+		nameEntry(key);
 		break;
 	}
 	case HIGHSCORE:
@@ -173,16 +105,13 @@ void iG::iKeyboard(unsigned char key)
 
 void iG::iSpecialKeyboard(unsigned char key)
 {
-	switch (key)
+	switch (Menu)
 	{
-	case GLUT_KEY_END:
-		exit(0);
-		break;
-
-	case GLUT_KEY_UP:
-		switch (Menu)
+	case MAIN:
+	{
+		switch (key)
 		{
-		case MAIN:
+		case GLUT_KEY_UP:
 			for (int i = NEW; i <= QUIT; i++)
 			{
 				if (menu[i].isSelected())
@@ -201,32 +130,7 @@ void iG::iSpecialKeyboard(unsigned char key)
 				}
 			}
 			break;
-		case NEW:
-			if (snake.getDir() != DOWN)
-			{
-				snake.setDir(UP);
-			}
-			break;
-
-		case LEVEL:
-			if (level[0].isSelected())
-			{
-				level[0].deSelect();
-				level[1].select();
-			}
-			else if (level[1].isSelected())
-			{
-				level[1].deSelect();
-				level[0].select();
-			}
-			break;
-		}
-		break;
-
-	case GLUT_KEY_DOWN:
-		switch (Menu)
-		{
-		case MAIN:
+		case GLUT_KEY_DOWN:
 			for (int i = NEW; i <= QUIT; i++)
 			{
 				if (menu[i].isSelected())
@@ -241,18 +145,29 @@ void iG::iSpecialKeyboard(unsigned char key)
 						menu[i].deSelect();
 						menu[i + 1].select();
 					}
-
 					break;
 				}
 			}
 			break;
-		case NEW:
-			if (snake.getDir() != UP)
-			{
-				snake.setDir(DOWN);
-			}
+		}
+		break;
+	}
+
+	case NEW:
+	{
+		if(snake.isStopped())
+		{
 			break;
-		case LEVEL:
+		}
+		snake.controlMove(key);
+		break;
+	}
+
+	case LEVEL:
+	{
+		switch (key)
+		{
+		case GLUT_KEY_UP:
 			if (level[0].isSelected())
 			{
 				level[0].deSelect();
@@ -264,33 +179,22 @@ void iG::iSpecialKeyboard(unsigned char key)
 				level[0].select();
 			}
 			break;
-		}
-		break;
 
-	case GLUT_KEY_LEFT:
-		switch (Menu)
-		{
-		case NEW:
-			if (snake.getDir() != RIGHT)
+		case GLUT_KEY_DOWN:
+			if (level[0].isSelected())
 			{
-				snake.setDir(LEFT);
+				level[0].deSelect();
+				level[1].select();
+			}
+			else if (level[1].isSelected())
+			{
+				level[1].deSelect();
+				level[0].select();
 			}
 			break;
 
 		}
-
 		break;
-
-	case GLUT_KEY_RIGHT:
-		switch (Menu)
-		{
-		case NEW:
-			if (snake.getDir() != LEFT)
-			{
-				snake.setDir(RIGHT);
-			}
-			break;
-		}
-		break;
+	}
 	}
 }

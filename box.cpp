@@ -28,6 +28,7 @@ int Box::getWidth()
 void Box::draw()
 {
 	iG::ISetColor::iSolid(getRGB());
+	// cout<<width<<" "<<height<<endl;
 	iG::IDraw::iRectangle(x,y,width,height);
 }
 void Box::setBounds(int x, int y, int width, int height)

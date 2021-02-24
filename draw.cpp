@@ -17,7 +17,6 @@ void iG::iDraw()
 {
 	iClear();
 	frame.draw();
-	
 	switch (Menu)
 	{
 	case NEW:

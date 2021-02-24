@@ -1,7 +1,7 @@
 all: game
 
-game: Point.o iGraphics.o Grid.o color.o Circle.o Box.o Button.o Food.o Snake.o game_window.o game_details.o Keyboard.o Mouse.o draw.o Main.o
-	g++32  -Llib  Point.o iGraphics.o Grid.o color.o Circle.o Box.o Button.o Food.o Snake.o game_window.o game_details.o Keyboard.o Mouse.o draw.o Main.o -o game -lfreeglut -lGlaux -lopengl32 -lglu32 -lwinmm -lgdi32 -static-libgcc -static-libstdc++ 
+game: Point.o iGraphics.o Grid.o color.o Circle.o Box.o Button.o Food.o Snake.o game_window.o game_details.o Keyboard.o Mouse.o draw.o highscore.o name_entry.o Main.o
+	g++32  -Llib  Point.o iGraphics.o Grid.o color.o Circle.o Box.o Button.o Food.o Snake.o game_window.o game_details.o Keyboard.o Mouse.o draw.o highscore.o name_entry.o Main.o -o game -lfreeglut -lGlaux -lopengl32 -lglu32 -lwinmm -lgdi32 -static-libgcc -static-libstdc++ 
 
 Main.o: Main.cpp
 	g++32 -Iinclude   -c Main.cpp
@@ -47,6 +47,12 @@ draw.o: draw.cpp
 
 Point.o: Point.cpp
 	g++32 -Iinclude   -c Point.cpp
+
+highscore.o: highscore.cpp
+	g++32 -Iinclude   -c highscore.cpp
+
+name_entry.o: name_entry.cpp
+	g++32 -Iinclude   -c name_entry.cpp
 
 run: game
 	./game
