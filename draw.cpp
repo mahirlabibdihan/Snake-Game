@@ -1,25 +1,27 @@
 #include "iGraphics.h"
-#include "Window.h"
+#include "game_window.h"
 #include "MAIN.h"
-#include "Animal.h"
+#include "Snake.h"
 #include "Food.h"
 #include "Button.h"
 #include "Box.h"
-#include "Details.h"
+#include "game_details.h"
 extern Button menu[5], level[2];
 extern Box gameover[2];
-extern Animal snake;
+extern Snake snake;
 extern Food fruit;
-extern Window frame;
+extern GameWindow frame;
 extern Option Menu;
-extern Details game;
+extern GameDetails game;
 void iG::iDraw()
 {
 	iClear();
 	frame.draw();
+	
 	switch (Menu)
 	{
 	case NEW:
+		// Grid::draw();
 		snake.draw();
 		fruit.draw();
 		break;
@@ -28,6 +30,8 @@ void iG::iDraw()
 		{
 			menu[i].draw();
 		}
+		iG::ISetColor::iSolid(frame.border.getRGB());
+		// iG::IDraw::iCircle(1000,1000,100);
 		break;
 	case LEVEL:
 		for (int i = 0; i < 2; i++)
@@ -35,14 +39,14 @@ void iG::iDraw()
 			level[i].draw();
 		}
 		break;
-	case gameOver:
+	case GAMEOVER:
 		for (int i = 0; i < 2; i++)
 		{
 			gameover[i].draw();
 		}
 		char Temp[10];
 		itoa(game.getScore(), Temp, 10);
-		iG::IsetColor::iSolid(WHITE);
+		iG::ISetColor::iSolid(WHITE);
 		iG::IText::iSmall(gameover[0].getX() + 15, gameover[0].getY() + gameover[0].getHeight() / 3, Temp);
 		if (!snake.name.empty())
 		{
@@ -54,16 +58,16 @@ void iG::iDraw()
 	case HIGHSCORE:
 		ifstream in;
 		in.open("Data\\HIGHSCORE.txt", ios::in);
+		iG::ISetColor::iSolid(frame.border.getRGB());
 		for(int i=0;!in.eof();i++)
 		{
 			char name[11],score[11];
 			in >> name >> score;
 			if (name != "")
 			{
-				iG::IText::iSmall(300,iG::iScreenHeight-80-i*40,name);
-				iG::IText::iSmall(600,iG::iScreenHeight-80-i*40,score);
+				iG::IText::iSmall(game.getScreenWidth()/3,game.getScreenHeight()-80-i*40,name);
+				iG::IText::iSmall(2*game.getScreenWidth()/3,game.getScreenHeight()-80-i*40,score);
 			}
-
 		}
 		in.close();
 

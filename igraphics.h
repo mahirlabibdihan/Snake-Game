@@ -1,7 +1,5 @@
 #ifndef __I_GRAPHICS__
 #define __I_GRAPHICS__
-#pragma comment(lib, "glut32.lib")
-#pragma comment(lib, "glaux.lib")
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h>
 #include <Gl/GLAux.h>
@@ -40,11 +38,11 @@ public:
     static void iMouseClick(int button, int state, int x, int y);
     static void iMouseScroll(int dir);
     static void iResize();
-    static int igetScreenHeight()
+    static int iGetScreenHeight()
     {
         return iScreenHeight;
     }
-    static int igetScreenWidth()
+    static int iGetScreenWidth()
     {
         return iScreenWidth;
     }
@@ -229,7 +227,7 @@ public:
             }
         }
     };
-    class IsetColor{
+    class ISetColor{
     public:
         static void iSolid(double r, double g, double b)
         {
@@ -263,7 +261,7 @@ public:
         }
 
 
-        static void iTrans(double r, double g, double b, double a)
+        static void iTrans(double r, double g, double b, double a=1.0)
         {
             double mmx = 255;
             if (r > mmx)
@@ -277,7 +275,7 @@ public:
             b /= mmx;
             glColor4f(r, g, b, a);
         }
-        static void iTrans(tuple<double, double, double> rgb, double a)
+        static void iTrans(tuple<double, double, double> rgb, double a=1.0)
         {
             double r = get<0>(rgb), g = get<1>(rgb), b = get<2>(rgb);
             double mmx = 255;
@@ -637,6 +635,8 @@ public:
         glLoadIdentity() ;
         glOrtho(0.0 , width , 0.0 , height , -1.0 , 1.0) ;
         iClear();
+
+        
         glutDisplayFunc(displayFF);
         glutReshapeFunc(reshapeFF);
         glutKeyboardFunc(keyboardHandler1FF); //normal

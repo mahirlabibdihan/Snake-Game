@@ -1,18 +1,18 @@
-#include "Main.h"
+#include "main.h"
 #include "Button.h"
-#include "Animal.h"
+#include "Snake.h"
 #include "Food.h"
-#include "Window.h"
-#include "Details.h"
+#include "game_window.h"
+#include "game_details.h"
 #include "Box.h"
 
 Button menu[5],level[2];
 Box gameover[2];
-Animal snake;
+Snake snake;
 Food fruit;
-Window frame;
+GameWindow frame;
 Option Menu = MAIN;
-Details game;
+GameDetails game;
 
 void Logic()
 {
@@ -25,7 +25,7 @@ void Logic()
 		{
 			if (snake.tail[i].getX() == snake.head.getX() && snake.tail[i].getY() == snake.head.getY())
 			{
-				Menu=gameOver;
+				Menu=GAMEOVER;
 			}
 		}		
 		snake.insert();
@@ -38,19 +38,19 @@ void Logic()
 
 		if (snake.getDir() == UP)
 		{
-			snake.upWard();
+			snake.moveUp();
 		}
 		else if (snake.getDir() == DOWN)
 		{
-			snake.downWard();
+			snake.moveDown();
 		}
 		else if (snake.getDir() == LEFT)
 		{
-			snake.leftWard();
+			snake.moveLeft();
 		}
 		else if (snake.getDir() == RIGHT)
 		{
-			snake.rightWard();
+			snake.moveRight();
 		}
 		snake.boundaryCheck();
 	}
@@ -61,26 +61,26 @@ void setup()
 	string LevelBtn[] = {"Easy", "Hard"};
 	snake.head.setRGB(GREEN);
 	frame.border.setRGB(GREEN);
-	frame.border.setBounds(Graph::getUnit()/2,Graph::getUnit()/2,(Graph::getCol() - 1)*Graph::getUnit(),(Graph::getRow() - 1)*Graph::getUnit());
+	frame.border.setBounds(Grid::getUnit()/2,Grid::getUnit()/2,(Grid::getCol() - 1)*Grid::getUnit(),(Grid::getRow() - 1)*Grid::getUnit());
 	fruit.newLocation();
 	menu[0].select();
 	level[0].select();
 
 	for (int i = QUIT; i > MAIN; i--)
 	{
-		menu[i].setBounds(iG::igetScreenWidth()/2-.5*140, 80 + (QUIT - i) * 70, 150, 50);
+		menu[i].setBounds(iG::iGetScreenWidth()/2-.5*140, 80 + (QUIT - i) * 70, 150, 50);
 		menu[i].setRGB(GREEN);
 	}
 
 	for (int i = 1; i > -1; i--)
 	{
-		level[i].setBounds(iG::igetScreenWidth()/2-.5*140, 170 + (1 - i) * 110, 150, 50);
+		level[i].setBounds(iG::iGetScreenWidth()/2-.5*140, 170 + (1 - i) * 110, 150, 50);
 		level[i].setRGB(GREEN);
 	}
 
 	for (int i = 1; i > -1; i--)
 	{
-		gameover[i].setBounds(iG::igetScreenWidth()/2-.5*140, 170 + (1 - i) * 110, 150, 50);
+		gameover[i].setBounds(iG::iGetScreenWidth()/2-.5*140, 170 + (1 - i) * 110, 150, 50);
 		gameover[i].setRGB(GREEN);
 	}
 
@@ -101,8 +101,8 @@ int main(int argc, char *argv[])
 	glutInit(&argc, argv);
 	setup();
 	iG::ITimer::iset(70, Logic);
-	iG::iInitialize(iG::igetScreenWidth(), iG::igetScreenHeight(), (char*)"snake", 960-iG::igetScreenWidth()/2,510-iG::igetScreenHeight()/2);
-	// glutFullScreen();
+	iG::iInitialize(iG::iGetScreenWidth(), iG::iGetScreenHeight(), (char*)"snake", 960-iG::iGetScreenWidth()/2,510-iG::iGetScreenHeight()/2);
+	glutFullScreen();
 	glutMainLoop();
 }
 

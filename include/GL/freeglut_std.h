@@ -422,7 +422,7 @@ FGAPI void    FGAPIENTRY glutInitDisplayString( const char* displayMode );
 FGAPI void    FGAPIENTRY glutMainLoop( void );
 
 /*
- * Window management functions, see fg_window.c
+ * GameWindow management functions, see fg_window.c
  */
 FGAPI int     FGAPIENTRY glutCreateWindow( const char* title );
 FGAPI int     FGAPIENTRY glutCreateSubWindow( int window, int x, int y, int width, int height );
@@ -486,7 +486,7 @@ FGAPI void    FGAPIENTRY glutTimerFunc( unsigned int time, void (* callback)( in
 FGAPI void    FGAPIENTRY glutIdleFunc( void (* callback)( void ) );
 
 /*
- * Window-specific callback functions, see fg_callbacks.c
+ * GameWindow-specific callback functions, see fg_callbacks.c
  */
 FGAPI void    FGAPIENTRY glutKeyboardFunc( void (* callback)( unsigned char, int, int ) );
 FGAPI void    FGAPIENTRY glutSpecialFunc( void (* callback)( int, int, int ) );

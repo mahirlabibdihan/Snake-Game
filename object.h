@@ -1,8 +1,8 @@
 #ifndef __OBJECT__
 #define __OBJECT__
-#include "Colors.h"
-#include "Graph.h"
+#include "color.h"
+#include "Grid.h"
 #include "Main.h"
-class Object: public Point, public RGBColor {
+class Object: public Point, public Color {
 };
 #endif

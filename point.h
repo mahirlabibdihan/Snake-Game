@@ -9,7 +9,7 @@ public:
 	Point(int x,int y);
 	int getX();
 	int getY();
-	void setXY(int x, int y);
+	void setPoint(int x, int y);
 	void setX(int x);
 	void setY(int y);
 	void changeX(int x);

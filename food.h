@@ -1,8 +1,8 @@
 #ifndef __FOOD__
 #define __FOOD__
-#include "Graph.h"
+#include "Grid.h"
 #include "Circle.h"
-#include "Animal.h"
+#include "Snake.h"
 #include "MAIN.h"
 class Food: public Circle {
 private:

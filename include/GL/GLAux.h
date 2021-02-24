@@ -62,7 +62,7 @@ extern "C" {
 #endif
 
 /*
-** ToolKit Window Types
+** ToolKit GameWindow Types
 ** in the future, AUX_RGBA may be a combination of both RGB and ALPHA
 */
 
@@ -84,7 +84,7 @@ extern "C" {
 #define AUX_DEPTH           AUX_DEPTH16 /* default is 16-bit depth buffer */
 
 /* 
-** Window Masks
+** GameWindow Masks
 */
 
 #define AUX_WIND_IS_RGB(x)      (((x) & AUX_INDEX) == 0)
@@ -344,7 +344,7 @@ void APIENTRY auxWireTeapot(GLdouble);
 void APIENTRY auxSolidTeapot(GLdouble);
 
 /*
-** Window specific functions
+** GameWindow specific functions
 ** hwnd, hdc, and hglrc valid after auxInitWindow()
 */
 HWND  APIENTRY auxgetHWND(void);

@@ -1,19 +1,19 @@
 all: game
 
-game: Point.o iGraphics.o Graph.o Colors.o Circle.o Box.o Button.o Food.o Animal.o Window.o Details.o Keyboard.o Mouse.o draw.o Main.o
-	g++32  -Llib  Point.o iGraphics.o Graph.o Colors.o Circle.o Box.o Button.o Food.o Animal.o Window.o Details.o Keyboard.o Mouse.o draw.o Main.o -o game -lfreeglut -lGlaux -lopengl32 -lglu32 -lwinmm -lgdi32 -static-libgcc -static-libstdc++ 
+game: Point.o iGraphics.o Grid.o color.o Circle.o Box.o Button.o Food.o Snake.o game_window.o game_details.o Keyboard.o Mouse.o draw.o Main.o
+	g++32  -Llib  Point.o iGraphics.o Grid.o color.o Circle.o Box.o Button.o Food.o Snake.o game_window.o game_details.o Keyboard.o Mouse.o draw.o Main.o -o game -lfreeglut -lGlaux -lopengl32 -lglu32 -lwinmm -lgdi32 -static-libgcc -static-libstdc++ 
 
 Main.o: Main.cpp
 	g++32 -Iinclude   -c Main.cpp
 
-Colors.o: Colors.cpp
-	g++32 -Iinclude   -c Colors.cpp 
+color.o: color.cpp
+	g++32 -Iinclude   -c color.cpp 
 
 Circle.o: Circle.cpp
 	g++32 -Iinclude   -c Circle.cpp
 
-Graph.o: Graph.cpp
-	g++32 -Iinclude   -c Graph.cpp
+Grid.o: Grid.cpp
+	g++32 -Iinclude   -c Grid.cpp
 
 iGraphics.o: iGraphics.cpp
 	g++32 -Iinclude   -c iGraphics.cpp
@@ -21,14 +21,14 @@ iGraphics.o: iGraphics.cpp
 Food.o: Food.cpp
 	g++32 -Iinclude   -c Food.cpp
 
-Animal.o: Animal.cpp
-	g++32 -Iinclude   -c Animal.cpp
+Snake.o: Snake.cpp
+	g++32 -Iinclude   -c Snake.cpp
 
-Window.o: Window.cpp
-	g++32 -Iinclude   -c Window.cpp
+game_window.o: game_window.cpp
+	g++32 -Iinclude   -c game_window.cpp
 
-Details.o: Details.cpp
-	g++32 -Iinclude   -c Details.cpp
+game_details.o: game_details.cpp
+	g++32 -Iinclude   -c game_details.cpp
 
 Button.o: Button.cpp
 	g++32 -Iinclude   -c Button.cpp

@@ -132,7 +132,7 @@ FGAPI void    FGAPIENTRY glutLeaveMainLoop( void );
 FGAPI void    FGAPIENTRY glutExit         ( void );
 
 /*
- * Window management functions, see fg_window.c
+ * GameWindow management functions, see fg_window.c
  */
 FGAPI void    FGAPIENTRY glutFullScreenToggle( void );
 FGAPI void    FGAPIENTRY glutLeaveFullScreen( void );
@@ -143,7 +143,7 @@ FGAPI void    FGAPIENTRY glutLeaveFullScreen( void );
 FGAPI void    FGAPIENTRY glutsetMenuFont( int menuID, void* font );
 
 /*
- * Window-specific callback functions, see fg_callbacks.c
+ * GameWindow-specific callback functions, see fg_callbacks.c
  */
 FGAPI void    FGAPIENTRY glutMouseWheelFunc( void (* callback)( int, int, int, int ) );
 FGAPI void    FGAPIENTRY glutPositionFunc( void (* callback)( int, int ) );

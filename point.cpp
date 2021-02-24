@@ -16,7 +16,7 @@ int Point::getY()
 {
 	return y;
 }
-void Point::setXY(int x, int y)
+void Point::setPoint(int x, int y)
 {
 	this->x = x;
 	this->y = y;

@@ -1,9 +1,9 @@
 #include "MAIN.h"
-#include "Animal.h"
-#include "Details.h"
+#include "Snake.h"
+#include "game_details.h"
 #include "Button.h"
-extern Animal snake;
-extern Details game;
+extern Snake snake;
+extern GameDetails game;
 extern Option Menu;
 extern Button menu[5], level[2];
 
@@ -105,10 +105,8 @@ void iG::iKeyboard(unsigned char key)
 		switch (key)
 		{
 		case '\r':
-			snake.setDir(NONE);
-			game.Over();
+			snake.stop();
 			game.save();
-			game.reset();
 			Menu = MAIN;
 			break;
 		case ' ':
@@ -131,12 +129,13 @@ void iG::iKeyboard(unsigned char key)
 		break;
 	}
 
-	case gameOver:
+	case GAMEOVER:
 	{
 		switch (key)
 		{
 		case '\r':
 			SaveScore();
+			snake.name.clear();
 			Menu = MAIN;
 			break;
 		case '\b':

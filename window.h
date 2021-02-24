@@ -1,12 +1,11 @@
-#ifndef __WINDOW__
-#define __WINDOW__
-#include "Main.h"
-#include "Colors.h"
-#include "Graph.h"
-#include "Box.h"
-class Window {
+#ifndef __GAME_WINDOW__
+#define __GAME_WINDOW__
+#include "main.h"
+#include "color.h"
+#include "graph.h"
+#include "box.h"
+class GameWindow {
 public:
-	RGBColor graph;
 	Box border;
 	void draw();
 };

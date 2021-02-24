@@ -26,13 +26,13 @@ void Button::draw()
 {
 	if (isSelected())
 	{
-		iG::IsetColor::iTrans(getRGB(), .5);
+		iG::ISetColor::iTrans(getRGB(), .5);
 		iG::IDraw::iFilled::iRectangle(x, y, width, height);
 	}
 
-	iG::IsetColor::iSolid(getRGB());
+	iG::ISetColor::iSolid(getRGB());
 	iG::IDraw::iRectangle(x, y, width, height);
-	iG::IsetColor::iSolid(WHITE);
+	iG::ISetColor::iSolid(WHITE);
 	char *Temp = &name[0];
 	iG::IText::iSmall(x + 15, y + height / 3, Temp);
 }

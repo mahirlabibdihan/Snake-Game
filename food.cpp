@@ -1,5 +1,5 @@
 #include "Food.h"
-extern Animal snake;
+extern Snake snake;
 Food::Food()
 {
 	setRadius(5);
@@ -17,8 +17,8 @@ void Food::newLocation()
 	while (!Success)
 	{
 		Success = true;
-		setX(1 + (rand() % (Graph::getCol() - 1)));
-		setY(1 + (rand() % (Graph::getRow() - 1)));
+		setX(1 + (rand() % (Grid::getCol() - 1)));
+		setY(1 + (rand() % (Grid::getRow() - 1)));
 		for (auto i : snake.tail)
 		{
 			if (i.getX() == getX() && i.getY() == getY())
@@ -32,8 +32,13 @@ void Food::newLocation()
 }
 void Food::draw()
 {
-	iG::IsetColor::iSolid(snake.head.getRGB());
-	iG::IDraw::iCircle(getX()*Graph::getUnit(), getY()*Graph::getUnit(), snake.head.getRadius());
-	iG::IsetColor::iSolid(getRGB());
-	iG::IDraw::iFilled::iCircle(getX()*Graph::getUnit(), getY()*Graph::getUnit(), getRadius());
+	iG::ISetColor::iSolid(snake.head.getRGB());
+	iG::IDraw::iCircle(getX()*Grid::getUnit(), getY()*Grid::getUnit(), snake.head.getRadius());
+
+	if(timer%2==0)
+	{
+		iG::ISetColor::iSolid(random());
+		iG::IDraw::iFilled::iCircle(getX()*Grid::getUnit(), getY()*Grid::getUnit(), getRadius());
+	}
+	
 }
