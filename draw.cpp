@@ -6,6 +6,7 @@
 #include "Button.h"
 #include "Box.h"
 #include "game_details.h"
+#include "score_font.h"
 extern Button menu[5], level[2];
 extern Box gameover[2];
 extern Snake snake;
@@ -15,6 +16,7 @@ extern Option Menu;
 extern GameDetails game;
 void iG::iDraw()
 {
+
 	iClear();
 	frame.draw();
 	switch (Menu)
@@ -29,7 +31,7 @@ void iG::iDraw()
 		{
 			menu[i].draw();
 		}
-		iG::ISetColor::iSolid(frame.border.getRGB());
+		iG::ISetColor::iSolid(frame.border.getColor());
 		// iG::IDraw::iCircle(1000,1000,100);
 		break;
 	case LEVEL:
@@ -57,7 +59,7 @@ void iG::iDraw()
 	case HIGHSCORE:
 		ifstream in;
 		in.open("Data\\HIGHSCORE.txt", ios::in);
-		iG::ISetColor::iSolid(frame.border.getRGB());
+		iG::ISetColor::iSolid(frame.border.getColor());
 		for(int i=0;!in.eof();i++)
 		{
 			char name[11],score[11];
@@ -69,7 +71,6 @@ void iG::iDraw()
 			}
 		}
 		in.close();
-
 		break;
 	}
 }

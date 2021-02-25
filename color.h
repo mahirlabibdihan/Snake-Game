@@ -15,9 +15,9 @@ protected:
 public:
 	Color();
 	Color(double r, double g, double b);
-	void setRGB(double r, double g, double b);
-	void setRGB(tuple<double, double, double>rgb);
-	tuple<double, double, double> getRGB();
+	void setColor(double r, double g, double b);
+	void setColor(tuple<double, double, double>rgb);
+	tuple<double, double, double> getColor();
 	static tuple<double, double, double> random();
 	int getR();
 	int getG();

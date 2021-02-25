@@ -19,15 +19,10 @@ bool isHighScore();
 bool Play=false;
 void Logic()
 {
+
 	switch (Menu)
 	{
 	case NEW:
-		if(!Play)
-		{
-			
-			Play=true;
-		}
-		
 		if (game.isOver()) return;
 		if (snake.isStopped()) return;	
 		if (dirKey==NONE) return;
@@ -90,8 +85,8 @@ void setup()
 	game.setScreenWidth();
 	string MenuBtn[] = {"New game", "Resume", "Level", "Highscore", "Quit"};
 	string LevelBtn[] = {"Easy", "Hard"};
-	snake.head.setRGB(GREEN);
-	frame.border.setRGB(GREEN);
+	snake.head.setColor(GREEN);
+	frame.border.setColor(GREEN);
 	
 	frame.border.setBounds(Grid::getUnit()/2,Grid::getUnit()/2,(Grid::getCol() - 1)*Grid::getUnit(),(Grid::getRow() - 1)*Grid::getUnit());
 	fruit.newLocation();
@@ -101,19 +96,19 @@ void setup()
 	for (int i = QUIT; i > MAIN; i--)
 	{
 		menu[i].setBounds(iG::iGetScreenWidth()/2-.5*140, 80 + (QUIT - i) * 70, 150, 50);
-		menu[i].setRGB(GREEN);
+		menu[i].setColor(GREEN);
 	}
 
 	for (int i = 1; i > -1; i--)
 	{
 		level[i].setBounds(iG::iGetScreenWidth()/2-.5*140, 170 + (1 - i) * 110, 150, 50);
-		level[i].setRGB(GREEN);
+		level[i].setColor(GREEN);
 	}
 
 	for (int i = 1; i > -1; i--)
 	{
 		gameover[i].setBounds(iG::iGetScreenWidth()/2-.5*140, 170 + (1 - i) * 110, 150, 50);
-		gameover[i].setRGB(GREEN);
+		gameover[i].setColor(GREEN);
 	}
 
 	for (int i = NEW; i <= QUIT; i++)
@@ -127,19 +122,28 @@ void setup()
 	}
 }
 
+void Play1()
+{
+	PlaySound("Data\\Gun.wav", NULL,SND_SYNC);
+}
+
+void Play2()
+{
+	PlaySound("Data\\Music.wav", NULL,SND_SYNC);
+}
 int main(int argc, char *argv[])
 {
-
 	srand(time(NULL));
 	glutInit(&argc, argv);
+	cout<<glutDeviceGet(GLUT_HAS_JOYSTICK )<<endl;
 	setup();
 	iG::ITimer::iSet(50, Logic);
+	PlaySound("Data\\Music.wav", NULL,SND_LOOP|SND_FILENAME|SND_ASYNC);
+	// iG::ITimer::iSet(1000, Play2);
 	iG::iInitialize((char*)"snake",GetSystemMetrics(SM_CXFULLSCREEN)/2-iG::iGetScreenWidth()/2,GetSystemMetrics(SM_CYFULLSCREEN)/2-iG::iGetScreenHeight()/2);
 	// glutFullScreen();
 	glutSetCursor(GLUT_CURSOR_NONE);
 	glutMainLoop();
-
-
 }
 
 	

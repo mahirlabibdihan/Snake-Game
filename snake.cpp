@@ -146,17 +146,17 @@ void Snake::extend()
 }
 void Snake::draw()
 {
-	iG::ISetColor::iTrans(head.getRGB(), 0.5);
+	iG::ISetColor::iTrans(head.getColor(), 0.5);
 	iG::IDraw::iFilled::iCircle(head.getX()*Grid::getUnit(), head.getY()*Grid::getUnit(), head.getRadius());
-	iG::ISetColor::iSolid(head.getRGB());
+	iG::ISetColor::iSolid(head.getColor());
 	iG::IDraw::iCircle(head.getX()*Grid::getUnit(), head.getY()*Grid::getUnit(), head.getRadius());
 	double Temp = 1;
 
 	for (Circle i : tail)
 	{
-		iG::ISetColor::iTrans(head.getRGB(), 0.5);
+		iG::ISetColor::iTrans(head.getColor(), 0.5);
 		iG::IDraw::iFilled::iCircle(i.getX()*Grid::getUnit(), i.getY()*Grid::getUnit(), head.getRadius() / Temp);
-		iG::ISetColor::iSolid(head.getRGB());
+		iG::ISetColor::iSolid(head.getColor());
 		iG::IDraw::iCircle(i.getX()*Grid::getUnit(), i.getY()*Grid::getUnit(), head.getRadius() / Temp);
 		Temp += .01;
 	}

@@ -28,11 +28,11 @@ void Food::newLocation()
 			}
 		}
 	}
-	setRGB(55 + rand() % 200, 55 + rand() % 200, 55 + rand() % 200 );
+	setColor(55 + rand() % 200, 55 + rand() % 200, 55 + rand() % 200 );
 }
 void Food::draw()
 {
-	iG::ISetColor::iSolid(snake.head.getRGB());
+	iG::ISetColor::iSolid(snake.head.getColor());
 	iG::IDraw::iCircle(getX()*Grid::getUnit(), getY()*Grid::getUnit(), snake.head.getRadius());
 
 	if(timer%2==0)

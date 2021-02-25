@@ -2,13 +2,13 @@
 Button::Button()
 {
 	selected = false;
-	setRGB(GREEN);
+	setColor(GREEN);
 }
 Button::Button(string name)
 {
 	selected = false;
 	this->name = name;
-	setRGB(GREEN);
+	setColor(GREEN);
 }
 void Button::select()
 {
@@ -26,11 +26,11 @@ void Button::draw()
 {
 	if (isSelected())
 	{
-		iG::ISetColor::iTrans(getRGB(), .5);
+		iG::ISetColor::iTrans(getColor(), .5);
 		iG::IDraw::iFilled::iRectangle(x, y, width, height);
 	}
 
-	iG::ISetColor::iSolid(getRGB());
+	iG::ISetColor::iSolid(getColor());
 	iG::IDraw::iRectangle(x, y, width, height);
 	iG::ISetColor::iSolid(WHITE);
 	char *Temp = &name[0];

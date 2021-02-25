@@ -39,7 +39,7 @@ void iG::iInitialize(char* title = (char*) "iG", int x = 0, int y = 10)
         glutReshapeFunc(reshapeFF);
         glutKeyboardFunc(keyboardHandler1FF); //normal
         glutSpecialFunc(keyboardHandler2FF); //special keys
-        glutJoystickFunc(joystickHandlerFF,10);
+        // glutJoystickFunc(joystickHandlerFF,0);
         glutMouseFunc(mouseClickHandlerFF);
         glutMotionFunc(mouseDragHandlerFF);
         glutPassiveMotionFunc(mouseMoveHandlerFF);

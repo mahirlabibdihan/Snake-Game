@@ -469,8 +469,8 @@ FGAPI void    FGAPIENTRY glutHideOverlay( void );
  */
 FGAPI int     FGAPIENTRY glutCreateMenu( void (* callback)( int menu ) );
 FGAPI void    FGAPIENTRY glutDestroyMenu( int menu );
-FGAPI int     FGAPIENTRY glutgetMenu( void );
-FGAPI void    FGAPIENTRY glutsetMenu( int menu );
+FGAPI int     FGAPIENTRY glutGetMenu( void );
+FGAPI void    FGAPIENTRY glutSetMenu( int menu );
 FGAPI void    FGAPIENTRY glutAddMenuEntry( const char* label, int value );
 FGAPI void    FGAPIENTRY glutAddSubMenu( const char* label, int subMenu );
 FGAPI void    FGAPIENTRY glutChangeToMenuEntry( int item, const char* label, int value );
@@ -517,10 +517,10 @@ FGAPI void    FGAPIENTRY glutTabletButtonFunc( void (* callback)( int, int, int,
 /*
  * State setting and retrieval functions, see fg_state.c
  */
-FGAPI int     FGAPIENTRY glutget( GLenum query );
-FGAPI int     FGAPIENTRY glutDeviceget( GLenum query );
-FGAPI int     FGAPIENTRY glutgetModifiers( void );
-FGAPI int     FGAPIENTRY glutLayerget( GLenum query );
+FGAPI int     FGAPIENTRY glutGet( GLenum query );
+FGAPI int     FGAPIENTRY glutDeviceGet( GLenum query );
+FGAPI int     FGAPIENTRY glutGetModifiers( void );
+FGAPI int     FGAPIENTRY glutLayerGet( GLenum query );
 
 /*
  * Font stuff, see fg_font.c

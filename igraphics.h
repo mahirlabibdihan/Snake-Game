@@ -15,6 +15,7 @@
 #include <fstream>
 #define PI (acos(-1.0))
 using namespace std;
+#pragma comment(lib,"opengl32.lib")
 class iG {
 protected:
     static void iClear()
@@ -120,9 +121,9 @@ public:
         glutPostRedisplay();
     }
 
-    static void joystickHandlerFF(unsigned int, int, int, int )
+    static void joystickHandlerFF(unsigned int buttonMask, int x, int y, int z)
     {
-        
+        cout<<buttonMask<<" "<<x<<" "<<y<<" "<<z<<endl;
     }
     static void keyboardHandler1FF(unsigned char key, int x, int y)
     {

@@ -6,7 +6,7 @@
 #include "box.h"
 class GameWindow {
 public:
-	Box border;
+	Rectangle border;
 	void draw();
 };
 #endif
