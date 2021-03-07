@@ -6,7 +6,6 @@
 #include "Button.h"
 #include "Box.h"
 #include "game_details.h"
-#include "score_font.h"
 extern Button menu[5], level[2];
 extern Box gameover[2];
 extern Snake snake;
